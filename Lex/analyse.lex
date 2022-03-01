@@ -21,7 +21,7 @@
 "&&"        { printf("tAND\n");}
 "||"        { printf("tOR\n");}
 "else"      { printf("tELSE\n");}
-[0-9]+	{ printf("tNB\n"); }     //atoi(yytext);
+[0-9]+		{ printf("tNB\n"); }     //atoi(yytext);
 [0-9]+e[0-9]+	{ printf("tNBEXP\n"); } 
 "+"			{ printf("tADD\n"); }
 "-"			{ printf("tSUB\n"); }
