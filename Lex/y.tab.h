@@ -76,15 +76,13 @@ extern int yydebug;
     tWHILE = 282,
     tELSE = 283,
     tRETURN = 284,
-    tINF = 285,
-    tSUP = 286,
+    tLT = 285,
+    tGT = 286,
     tEQCOND = 287,
     tAND = 288,
     tOR = 289,
     tADDR = 290,
-    tLT = 291,
-    tGT = 292,
-    tNOT = 293
+    tNOT = 291
   };
 #endif
 /* Tokens.  */
@@ -115,15 +113,13 @@ extern int yydebug;
 #define tWHILE 282
 #define tELSE 283
 #define tRETURN 284
-#define tINF 285
-#define tSUP 286
+#define tLT 285
+#define tGT 286
 #define tEQCOND 287
 #define tAND 288
 #define tOR 289
 #define tADDR 290
-#define tLT 291
-#define tGT 292
-#define tNOT 293
+#define tNOT 291
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -132,9 +128,9 @@ union YYSTYPE
 #line 1 "yacc.y"
 
 	int nombre;
-    char id[50];
+    char id[30];
 
-#line 138 "y.tab.h"
+#line 134 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
