@@ -5,48 +5,91 @@
 %}
 
 %%
+"{" return T_OPEN_BRAC;
+"}" return T_CLOSE_BRAC;
+const {yylval.v3 = strdup(yytext);return T_CONST_TYPE;}
+int {yylval.v3 = strdup(yytext);return T_INT_TYPE;}
+float {yylval.v3 = strdup(yytext);return T_FLOAT_TYPE;}
+double {yylval.v3 = strdup(yytext);return T_DOUBLE_TYPE;}
+[0-9]+  {yylval.v1 = atoi(yytext); return T_INT;}
+[0-9]+[\.][0-9]+ return T_FLOAT;
+return return T_RETURN;
+"+" return T_ADD;
+"-" return T_SUB;
+"*" return T_MUL;
+"/" return T_DIV;
+"+=" return T_ADD_EQ;
+"-=" return T_SUB_EQ;
+"*=" return T_MUL_EQ;
+"/=" return T_DIV_EQ;
+"=" return T_EQUALS;
+"(" return T_OPEN_PAR;
+")" return T_CLOSE_PAR;
+">" return T_LOGICAL_SUP;
+"<" return T_LOGICAL_INF;
+"&&" return T_LOGICAL_AND;
+"||" return T_LOGICAL_OR;
+">=" return T_LOGICAL_SUP_EQ;
+"<=" return T_LOGICAL_INF_EQ; 
+"==" return T_LOGICAL_EQ;
+"!=" return T_LOGICAL_NEQ;
+"!" return T_LOGICAL_NOT;
 
-"main"      { return tMAIN ;} 
-"{"         { return tOBRACKET;}
-"}"         { return tCBRACKET; }
-"("			{ return tOBRACE; }
-")"			{ return tCBRACE; }
-"const"     { return tCONST; }
-"int"       { return tINT; }
-"printf"    { return tPRINTF; } //Degeu mais à degager
-"if"        { return tIF; }
-"while"     { return tWHILE; }
-"return"    {return tRETURN; }
-"<"         { return tINF; }
-">"         { return tSUP; }
-"=="        { return tEQCOND; }
-"&&"        { return tAND; }
-"||"        { return tOR; }
-"else"      { return tELSE;}
-"&"         { return tADDR;}
-"["         { return tOCROCH;}
-"]" 		{ return tCCROCH;}
-"get"       { return tGET;}
-"stop"      { return tSTOP;}
-[0-9]+	{ yylval.nombre = atoi(yytext); return tNB; }
-[0-9]+e[0-9]+	{ yylval.nombre = -1; return tNBEXP; } //Renvoyer le token tNB et pas tNBEXP
-"+"			{ return tADD; }
-"-"			{ return tSUB; }
-"*"         { return tMUL; }
-"/"         { return tDIV; }
-"="         { return tEQ; }
-";"			{ return tPV; }
-" "			{} //Ne pas les retourner à Yacc
-"   "       {} //Ne pas les retourner à Yacc
-","         { return tCOMA; }
-"\n"        {} //Ne pas les retourner à Yacc
-[a-zA-Z][a-zA-Z0-9_]* { strcpy(yylval.id, yytext); return tID; }
-.				{ }//return tERROR; }
+if return T_IF;
+else return T_ELSE;
+while return T_WHILE;
+[\n\t\ ]+ {};
+, return T_COMA;
+; return T_END_INSTRUCT;
+printf\(.*\) return T_PRINTF;
+[A-z][A-z0-9_]* {yylval.v3 = strdup(yytext); return T_VARNAME;}
+
 %%
-
-int yywrap(void){return 1;}
-
- void yyerror (char const *s)
+int yywrap()
 {
-  fprintf (stderr, "%s\n", s);
+    return 1;
+}
+"{" return T_OPEN_BRAC;
+"}" return T_CLOSE_BRAC;
+const {yylval.v3 = strdup(yytext);return T_CONST_TYPE;}
+int {yylval.v3 = strdup(yytext);return T_INT_TYPE;}
+float {yylval.v3 = strdup(yytext);return T_FLOAT_TYPE;}
+double {yylval.v3 = strdup(yytext);return T_DOUBLE_TYPE;}
+[0-9]+  {yylval.v1 = atoi(yytext); return T_INT;}
+[0-9]+[\.][0-9]+ return T_FLOAT;
+return return T_RETURN;
+"+" return T_ADD;
+"-" return T_SUB;
+"*" return T_MUL;
+"/" return T_DIV;
+"+=" return T_ADD_EQ;
+"-=" return T_SUB_EQ;
+"*=" return T_MUL_EQ;
+"/=" return T_DIV_EQ;
+"=" return T_EQUALS;
+"(" return T_OPEN_PAR;
+")" return T_CLOSE_PAR;
+">" return T_LOGICAL_SUP;
+"<" return T_LOGICAL_INF;
+"&&" return T_LOGICAL_AND;
+"||" return T_LOGICAL_OR;
+">=" return T_LOGICAL_SUP_EQ;
+"<=" return T_LOGICAL_INF_EQ; 
+"==" return T_LOGICAL_EQ;
+"!=" return T_LOGICAL_NEQ;
+"!" return T_LOGICAL_NOT;
+
+if return T_IF;
+else return T_ELSE;
+while return T_WHILE;
+[\n\t\ ]+ {};
+, return T_COMA;
+; return T_END_INSTRUCT;
+printf\(.*\) return T_PRINTF;
+[A-z][A-z0-9_]* {yylval.v3 = strdup(yytext); return T_VARNAME;}
+
+%%
+int yywrap()
+{
+    return 1;
 }
