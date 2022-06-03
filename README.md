@@ -4,7 +4,7 @@ Le dossier Lex_Yacc contient :
 
 -Une version finale des règles lexicales qu'on a nommé analysev2.lex qui analysent un fichier C afin de retrouver les tokens
 
--une grammaire grammaire.y qui à partir des tokens envoyés par regle.lex génère un code ASM correspondant au fichier example.c (code C minimaliste).
+-Une grammaire grammaire.y qui à partir des tokens envoyés par analysev2.lex génère un code ASM correspondant au fichier example.c .
 
 Commande pour compilation du générateur et interpréteur: make
 
